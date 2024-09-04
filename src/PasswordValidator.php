@@ -30,25 +30,25 @@ class PasswordValidator
 
     public function uppercase(): self
     {
-        $this->updateValidationStatus((bool)preg_match('/[A-Z]/', $this->password));
+        $this->updateValidationStatus((bool)preg_match('/\p{Lu}/u', $this->password));
         return $this;
     }
 
     public function lowercase(): self
     {
-        $this->updateValidationStatus((bool)preg_match('/[a-z]/', $this->password));
+        $this->updateValidationStatus((bool)preg_match('/\p{Ll}/u', $this->password));
         return $this;
     }
 
     public function numbers(): self
     {
-        $this->updateValidationStatus((bool)preg_match('/\d/', $this->password));
+        $this->updateValidationStatus((bool)preg_match('/\p{Nd}/u', $this->password));
         return $this;
     }
 
     public function specialCharacters(): self
     {
-        $this->updateValidationStatus((bool)preg_match('/[^a-zA-Z\d]/', $this->password));
+        $this->updateValidationStatus((bool)preg_match('/[\p{S}\p{P}]/u', $this->password));
         return $this;
     }
 

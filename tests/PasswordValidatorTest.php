@@ -161,6 +161,11 @@ class PasswordValidatorTest extends TestCase
             'expected' => true,
         ];
 
+        yield 'valid password with uppercase and unicode' => [
+            'password' => '12Ö345678',
+            'expected' => true,
+        ];
+
         yield 'invalid password with uppercase' => [
             'password' => '1234567',
             'expected' => false,
@@ -171,6 +176,11 @@ class PasswordValidatorTest extends TestCase
     {
         yield 'valid password with lowercase' => [
             'password' => '12j345678',
+            'expected' => true,
+        ];
+
+        yield 'valid password with lowercase and unicode' => [
+            'password' => '12ó345678',
             'expected' => true,
         ];
 
@@ -197,6 +207,11 @@ class PasswordValidatorTest extends TestCase
     {
         yield 'valid password with special characters' => [
             'password' => 'dafasf1$67',
+            'expected' => true,
+        ];
+
+        yield 'valid password with special characters #' => [
+            'password' => 'dafasf1#67',
             'expected' => true,
         ];
 

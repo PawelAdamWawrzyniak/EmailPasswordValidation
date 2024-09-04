@@ -38,7 +38,7 @@ class UserValidatorTest extends TestCase
     public static function ValidationPasswordDataProvider(): iterable
     {
         yield 'correct password' => [
-            'password' => 'Wl@12345',
+            'password' => 'Wl@#12345',
             'expected' => true,
         ];
 
