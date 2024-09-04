@@ -51,10 +51,10 @@ if ($validator->validatePassword($password)) {
 ```
 
 ## Assumptions/Concerns:
-   - letter is any letter from a-z or A-Z.
-   - character is any character from ASCII table.
-   - no requirements characters before .
+In the Task there was no requirements characters after @ and before dot. 
 So I should assume that email test@.com is valid. In reality there is not such domain
-   therefore there is no test for such cases. 
-   - I should delegate validation of password to separate class if I want to cover solid principles.
+Therefore there is no test for such cases.
+
+I think there was a nice exercise to write a class that validates email and password.
+instead of using simply Laravel Password or Email validation.
    
