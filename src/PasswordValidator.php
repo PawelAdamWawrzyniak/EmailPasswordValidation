@@ -40,13 +40,13 @@ class PasswordValidator
         return $this;
     }
 
-    public function number(): self
+    public function numbers(): self
     {
         $this->updateValidationStatus(preg_match('/\d/', $this->password));
         return $this;
     }
 
-    public function specialCharacter(): self
+    public function specialCharacters(): self
     {
         $this->updateValidationStatus(preg_match('/[^a-zA-Z\d]/', $this->password));
         return $this;

@@ -26,8 +26,8 @@ class UserValidator
             ->length()
             ->uppercase()
             ->lowercase()
-            ->number()
-            ->specialCharacter()
+            ->numbers()
+            ->specialCharacters()
             ->validate();
     }
 }
