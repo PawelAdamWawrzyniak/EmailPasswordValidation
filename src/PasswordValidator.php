@@ -24,57 +24,32 @@ class PasswordValidator
 
     public function length(int $length = 8): self
     {
-        $this->updateValidationStatus($this->minLength($length));
+        $this->updateValidationStatus(strlen($this->password) >= $length);
         return $this;
     }
 
     public function uppercase(): self
     {
-        $this->updateValidationStatus($this->hasUppercase());
+        $this->updateValidationStatus(preg_match('/[A-Z]/', $this->password));
         return $this;
     }
 
     public function lowercase(): self
     {
-        $this->updateValidationStatus($this->hasLowercase());
+        $this->updateValidationStatus(preg_match('/[a-z]/', $this->password));
         return $this;
     }
 
     public function number(): self
     {
-        $this->updateValidationStatus($this->hasNumber());
+        $this->updateValidationStatus(preg_match('/\d/', $this->password));
         return $this;
-    }
-
-    private function minLength(int $minLength = 8): bool
-    {
-        return strlen($this->password) >= $minLength;
-    }
-
-    private function hasUppercase(): bool
-    {
-        return (bool)preg_match('/[A-Z]/', $this->password);
-    }
-
-    private function hasLowercase(): bool
-    {
-        return (bool)preg_match('/[a-z]/', $this->password);
-    }
-
-    private function hasNumber(): bool
-    {
-        return (bool)preg_match('/\d/', $this->password);
     }
 
     public function specialCharacter(): self
     {
-        $this->updateValidationStatus($this->hasSpecialCharacter());
+        $this->updateValidationStatus(preg_match('/[^a-zA-Z\d]/', $this->password));
         return $this;
-    }
-
-    private function hasSpecialCharacter(): bool
-    {
-        return (bool)preg_match('/[^a-zA-Z\d]/', $this->password);
     }
 
     private function updateValidationStatus(bool $validationStatus): void
