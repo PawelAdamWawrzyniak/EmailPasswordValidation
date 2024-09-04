@@ -8,7 +8,9 @@ class UserValidator
 {
     public function validateEmail(string $email): bool
     {
-        return false;
+        preg_match('/(?P<username>[a-zA-Z]+)@(?P<domain>\w*\.[a-zA-Z]{2}.*)/', $email, $matches);
+
+        return array_key_exists('username', $matches) && array_key_exists('domain', $matches);
     }
 
     public function  validatePassword(string $password): bool
