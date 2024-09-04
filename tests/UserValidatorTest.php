@@ -8,15 +8,34 @@ use App\UserValidator;
 
 class UserValidatorTest extends TestCase
 {
-    public function testValidateEmail(): void
+
+
+    /**
+     * @dataProvider dataProvider
+     * @return void
+     */
+    public function testValidateEmail(string $email, bool $expected): void
     {
         // Given
         $validator = new UserValidator();
 
         // When
-        $result = $validator->validateEmail('pawel_test_email.com');
+        $result = $validator->validateEmail($email);
         // Then
 
-        $this->assertSame(false,$result);
+        $this->assertSame($expected,$result);
+    }
+
+    public static function dataProvider():iterable
+    {
+        yield 'email without @' => [
+           'email' => 'pawel_test_email.com',
+           'expected' => false,
+        ];
+
+        yield 'correct email' => [
+            'email' => 'pawel@testemail.com',
+            'expected' => true,
+        ];
     }
 }
