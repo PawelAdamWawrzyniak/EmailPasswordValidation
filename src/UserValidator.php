@@ -8,7 +8,7 @@ class UserValidator
 {
     public function validateEmail(string $email): bool
     {
-        preg_match('/(?P<username>[a-zA-Z]+)@(?P<domain>\w*\.[a-zA-Z]{2}.*)/', $email, $matches);
+        preg_match('/(?P<username>[a-zA-Z]+)@(?P<domain>\w*\..*[a-zA-Z].*[a-zA-Z].*)/', $email, $matches);
 
         return array_key_exists('username', $matches) && array_key_exists('domain', $matches);
     }

@@ -110,5 +110,15 @@ class UserValidatorTest extends TestCase
             'email' => 'testr@.com',
             'expected' => true,
         ];
+
+        yield 'correct email - domain start with numbers' => [
+            'email' => 'testr@.34242com',
+            'expected' => true,
+        ];
+
+        yield 'correct email - domain letters are not adjacent' => [
+            'email' => 'testr@.3c242m',
+            'expected' => true,
+        ];
     }
 }
