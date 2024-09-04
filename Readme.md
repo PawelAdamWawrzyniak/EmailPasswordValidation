@@ -56,4 +56,5 @@ if ($validator->validatePassword($password)) {
    - no requirements characters before .
 So I should assume that email test@.com is valid. In reality there is not such domain
    therefore there is no test for such cases. 
+   - I should delegate validation of password to separate class if I want to cover solid principles.
    

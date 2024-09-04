@@ -41,6 +41,31 @@ class UserValidatorTest extends TestCase
             'password' => 'Wl@12345',
             'expected' => true,
         ];
+
+        yield 'password with less then 8 characters' => [
+            'password' => 'Wl@145',
+            'expected' => false,
+        ];
+
+        yield 'password without uppercase letter' => [
+            'password' => 'wl@12345',
+            'expected' => false,
+        ];
+
+        yield 'password without lowercase letter' => [
+            'password' => 'WL@12345',
+            'expected' => false,
+        ];
+
+        yield 'password without number' => [
+            'password' => 'WL@abcde',
+            'expected' => false,
+        ];
+
+        yield 'password without special character' => [
+            'password' => 'WL1abcde',
+            'expected' => false,
+        ];
     }
 
 
