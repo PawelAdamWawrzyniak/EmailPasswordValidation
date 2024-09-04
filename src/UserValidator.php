@@ -6,11 +6,16 @@ namespace App;
 
 class UserValidator
 {
+    private EmailValidator $emailValidator;
+
+    public function __construct()
+    {
+        $this->emailValidator = new EmailValidator();
+    }
+
     public function validateEmail(string $email): bool
     {
-        preg_match('/(?P<username>[a-zA-Z]+)@(?P<domain>\w*\..*[a-zA-Z].*[a-zA-Z].*)/', $email, $matches);
-
-        return array_key_exists('username', $matches) && array_key_exists('domain', $matches);
+        return $this->emailValidator->validateEmail($email);
     }
 
     public function  validatePassword(string $password): bool
