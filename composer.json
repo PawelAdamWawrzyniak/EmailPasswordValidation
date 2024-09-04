@@ -1,0 +1,10 @@
+{
+  "name": "pawelwaw-git/email-password-validation",
+  "type": "project",
+  "description": "The application is used to validate email and password.",
+  "keywords": ["password validation", "email valiadation"],
+  "license": "MIT",
+  "require": {
+    "php": "^8.3"
+  }
+}
