@@ -1,51 +1,25 @@
 <?php
 
-
 namespace Tests;
 
+use App\EmailValidator;
+use App\UserValidator;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use App\UserValidator;
 
-class UserValidatorTest extends TestCase
+class EmailValidatorTest extends TestCase
 {
-    #[DataProvider('ValidationPasswordDataProvider')]
-    public function testValidatePassword(string $password, bool $expected): void
-    {
-        // Given
-        $validator = new UserValidator();
-
-        // When
-        $result = $validator->validatePassword($password);
-        // Then
-
-        $this->assertSame($expected,$result);
-    }
-
     #[DataProvider('ValidationEmailDataProvider')]
     public function testValidateEmail(string $email, bool $expected): void
     {
         // Given
-        $validator = new UserValidator();
+        $validator = new EmailValidator();
 
         // When
         $result = $validator->validateEmail($email);
         // Then
 
         $this->assertSame($expected,$result);
-    }
-
-    public static function ValidationPasswordDataProvider(): iterable
-    {
-        yield 'correct password' => [
-            'password' => 'Wl@12345',
-            'expected' => true,
-        ];
-
-        yield 'invalid password' => [
-            'password' => '48342274',
-            'expected' => false,
-        ];
     }
 
 
@@ -57,8 +31,8 @@ class UserValidatorTest extends TestCase
         ];
 
         yield 'email without @' => [
-           'email' => 'pawel_test_email.com',
-           'expected' => false,
+            'email' => 'pawel_test_email.com',
+            'expected' => false,
         ];
 
         yield 'email without letter before @' => [

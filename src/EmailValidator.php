@@ -14,7 +14,7 @@ class EmailValidator
     public function validateEmail(string $email): bool
     {
         $matches = [];
-        $matches = $this->matchEmailRegex(self::EmailRegex, $email, $matches);
+        $matches = $this->matchEmailRegex($email, $matches);
 
         return $this->isUserNameMatched($matches) && $this->isDomainMatched($matches);
     }
@@ -23,7 +23,7 @@ class EmailValidator
      * @param array $matches
      * @return bool
      */
-    public function isUserNameMatched(array $matches): bool
+    private function isUserNameMatched(array $matches): bool
     {
         return array_key_exists(self::USERNAME, $matches);
     }
@@ -32,20 +32,19 @@ class EmailValidator
      * @param array $matches
      * @return bool
      */
-    public function isDomainMatched(array $matches): bool
+    private function isDomainMatched(array $matches): bool
     {
         return array_key_exists(self::DOMAIN, $matches);
     }
 
     /**
-     * @param string $EmailRegexExpression
      * @param string $email
      * @param $matches
      * @return mixed
      */
-    public function matchEmailRegex(string $EmailRegexExpression, string $email, $matches): mixed
+    private function matchEmailRegex(string $email, $matches): mixed
     {
-        preg_match($EmailRegexExpression, $email, $matches);
+        preg_match(self::EmailRegex, $email, $matches);
         return $matches;
     }
 }
